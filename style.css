@@ -1,15 +1,19 @@
+/* =========================================== */
+/* === ESTILOS BASE Y RESPONSIVE === */
+/* =========================================== */
 
 * { box-sizing: border-box; margin:0; padding:0; }
 body { font-family: Arial, sans-serif; background:#000; color:#fff; line-height:1.6; }
 header { display:flex; justify-content:space-between; align-items:center; padding:20px; background:#111; position:fixed; width:100%; top:0; z-index:1000; }
 header img { height:50px; }
 nav { display:flex; }
-nav a { color:#d4af37; text-decoration:none; margin-left:20px; font-weight:bold; }
+/* NOTA: Se actualiza el color base de la navegación al color dorado FF C3 00 */
+nav a { color:#FFC300; text-decoration:none; margin-left:20px; font-weight:bold; }
 nav a:hover { color:#fff; }
 .menu-toggle { display:none; flex-direction:column; cursor:pointer; }
-.menu-toggle div { width:25px; height:3px; background:#d4af37; margin:4px 0; transition:0.3s; }
+.menu-toggle div { width:25px; height:3px; background:#FFC300; margin:4px 0; transition:0.3s; }
 section { padding:100px 20px 40px 20px; max-width:900px; margin:auto; }
-h1,h2 { color:#d4af37; margin-bottom:20px; }
+h1,h2 { color:#FFC300; margin-bottom:20px; }
 .card { background:#111; padding:20px; border-radius:10px; margin-bottom:20px; box-shadow: 0 4px 8px rgba(0,0,0,0.5); }
 footer { text-align:center; padding:20px; background:#111; margin-top:40px; }
 
@@ -20,8 +24,9 @@ footer { text-align:center; padding:20px; background:#111; margin-top:40px; }
     nav a { margin:15px 0; text-align:center; }
     .menu-toggle { display:flex; }
 }
+
 /* =========================================== */
-/* === ESTILOS NUEVOS CONSOLIDADOS === */
+/* === ESTILOS DE COMPONENTES FUNCIONALES (Servicios, Rutinas, Contacto) === */
 /* =========================================== */
 
 /* --- GENERALES / TITULOS NUEVOS --- */
@@ -37,29 +42,32 @@ footer { text-align:center; padding:20px; background:#111; margin-top:40px; }
     margin-bottom: 20px;
 }
 
-
 /* ----------------------------------- */
-/* === 1. ESTILOS DE LA SECCIÓN DE SERVICIOS (ACORDEÓN) === */
+/* === 1. ESTILOS DE LA SECCIÓN DE SERVICIOS (ACORDEÓN - CON ASPECTO DE BOTÓN) === */
 /* ----------------------------------- */
 
 .servicio-item {
-    margin-bottom: 12px;
+    margin-bottom: 15px; /* Más espacio entre botones */
     border-radius: 8px;
-    background-color: #1A1A1A;
+    background-color: transparent; 
     overflow: hidden; 
 }
 
-/* Encabezado Clickeable */
+/* Encabezado Clickeable, CON ASPECTO DE BOTÓN */
 .servicio-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    padding: 15px 20px;
+    padding: 18px 25px; 
     color: white; 
     font-weight: bold;
     font-size: 16px;
-    user-select: none;
+    text-transform: uppercase; 
+    background-color: #1A1A1A; 
+    border: 2px solid #FFC300; /* BORDE DORADO FUERTE */
+    border-radius: 8px; 
+    margin: 0;
     transition: background-color 0.3s;
 }
 
@@ -74,10 +82,16 @@ footer { text-align:center; padding:20px; background:#111; margin-top:40px; }
 /* Contenido de la descripción (Inicialmente oculto) */
 .servicio-content {
     max-height: 0; 
-    padding: 0 20px;
+    padding: 0 25px; 
     overflow: hidden;
     transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-    background-color: #222;
+    background-color: #222; /* Fondo de la descripción */
+    /* Bordes para fusionar con el botón */
+    border-left: 2px solid #FFC300; 
+    border-right: 2px solid #FFC300; 
+    border-bottom: 2px solid #FFC300; 
+    border-top: none; 
+    border-radius: 0 0 8px 8px; /* Solo esquinas inferiores redondeadas */
 }
 
 .servicio-content p {
@@ -104,9 +118,17 @@ footer { text-align:center; padding:20px; background:#111; margin-top:40px; }
 
 .accordion-toggle:checked ~ .servicio-header ~ .servicio-content {
     max-height: 500px; 
-    padding: 10px 20px 15px 20px;
+    padding: 10px 25px 15px 25px; 
 }
 
+/* Ajuste: Quitar borde inferior del botón cuando está abierto */
+.accordion-toggle:checked + .servicio-header {
+    background-color: #333; 
+    border-bottom: none;
+    border-radius: 8px 8px 0 0; 
+}
+
+/* Rotar el signo "+" */
 .accordion-toggle:checked ~ .servicio-header span {
     transform: rotate(45deg); 
     color: #FF6347;
@@ -135,11 +157,11 @@ footer { text-align:center; padding:20px; background:#111; margin-top:40px; }
 .rutina-link .icon {
     font-size: 14px;
     font-weight: normal;
-    color: #25D366; /* Verde para resaltar la descarga */
+    color: #25D366; 
 }
 
 .rutina-link.avanzada .icon {
-    color: #FFC300; /* Dorado para el botón de contacto */
+    color: #FFC300; 
 }
 
 .rutina-link:hover {
