@@ -1,28 +1,51 @@
 /* --- CAMBIOS PARA LOGO DE FONDO EN HEADER --- */
 
-/* 1. Establecer la imagen de fondo en el header */
+/* 1. Establecer la imagen de fondo en el header con una capa de color (Overlay) */
 header {
-    background-image: url('logo.jpg'); /* Usa tu logo como fondo */
+    /* Agregamos un linear-gradient oscuro semi-transparente para que el texto blanco (navegación) se vea bien sobre cualquier logo. */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('logo.jpg');
     background-size: cover; /* Asegura que la imagen cubra todo el header */
     background-position: center; /* Centra la imagen */
     background-repeat: no-repeat; /* Evita que se repita */
-    min-height: 500px; /* ¡AUMENTADO a 500px para una visibilidad máxima! */
+    min-height: 500px; /* Mantenemos la altura grande */
     padding: 20px;
-    color: white; /* Cambia el color del texto a blanco para que se vea sobre el logo */
+    color: white; /* El texto debe ser blanco */
     box-shadow: none; /* Elimina la sombra si la había */
     position: relative; /* Necesario para la posición de los elementos internos */
+    display: flex; /* Usamos flexbox para centrar el contenido */
+    flex-direction: column;
+    justify-content: space-between; /* Mantiene la navegación arriba y el contenido centrado */
+    align-items: center;
 }
 
-/* 2. Ocultar la imagen <img> dentro del header, ya que la usamos como fondo */
+/* 2. Estilo del título principal para que se vea bien en el centro del fondo */
+.header-title {
+    font-size: 3em;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px black; /* Sombra para máxima visibilidad */
+    margin-top: 100px; /* Baja un poco el título */
+}
+
+/* 3. Ocultar la imagen <img> dentro del header (aunque ya la eliminamos del HTML, mantenemos la regla) */
 header img {
     display: none;
 }
 
-/* 3. Ajustar la barra de navegación para que se vea bien sobre el fondo oscuro/con imagen */
+/* 4. Ajustar la barra de navegación y enlaces */
+nav {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: flex-end; /* Alinea los enlaces a la derecha */
+    padding: 10px 0;
+}
+
 nav a {
     color: white; /* Asegura que los enlaces sean blancos y visibles */
     text-shadow: 1px 1px 2px black; /* Añade una sombra de texto para mayor legibilidad */
     border-bottom: 2px solid transparent;
+    margin-left: 20px;
 }
 
 nav a:hover {
@@ -30,7 +53,7 @@ nav a:hover {
     border-bottom: 2px solid #ff9900;
 }
 
-/* 4. Ajustar el menú desplegable (hamburguesa) para que se vea */
+/* 5. Ajustar el menú desplegable (hamburguesa) para que se vea */
 .menu-toggle div {
     background-color: white; /* Líneas blancas para el menú de hamburguesa */
 }
@@ -51,7 +74,7 @@ body {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 500px; /* ¡AJUSTADO para que coincida con la nueva altura del header (500px)! */
+    top: 500px; /* AJUSTADO para que coincida con la nueva altura del header (500px)! */
     right: 0;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.9); /* Fondo semi-transparente */
@@ -60,6 +83,9 @@ body {
 
 .menu-toggle {
     display: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
 @media (max-width: 768px) {
@@ -68,6 +94,14 @@ body {
     }
     nav {
         display: none;
+        flex-direction: column;
+        align-items: center;
+    }
+    nav a {
+        margin: 10px 0;
+    }
+    header {
+        align-items: flex-start; /* Alinea el contenido a la izquierda en móvil */
     }
 }
 
